@@ -18,7 +18,7 @@ public class DetectCellLocation : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
 
-            Debug.Log(worldPosition);
+            Debug.Log("Origen" + cellPosition);
         }
 
         if (Input.GetMouseButtonDown(1))
