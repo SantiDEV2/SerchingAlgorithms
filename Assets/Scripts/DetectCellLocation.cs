@@ -8,6 +8,7 @@ public class DetectCellLocation : MonoBehaviour
     public Tilemap tilemap;
     public TileBase origin;
     public TileBase end;
+
     public FloodFill startpoint, endpoint;
 
     private void Update()
@@ -23,12 +24,12 @@ public class DetectCellLocation : MonoBehaviour
         {
             var actualTile = tilemap.GetTile(cellPosition);
             if (actualTile == null) { return; }
-            Debug.Log("Origen " + cellPosition);
+            Debug.Log("Origen "+ cellPosition);
             startpoint.startingPoint = cellPosition;
             TileFlags flags = tilemap.GetTileFlags(cellPosition);
             tilemap.SetTile(cellPosition, origin);
             tilemap.SetTileFlags(cellPosition, flags);
-
+            
         }
 
         if (Input.GetMouseButtonDown(1))

@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class Set 
 {
-    public  List<object> set = new();
-    public bool Add(Vector3 element)
-    {
+    public List<Vector3> set = new List<Vector3>();
 
-        if (!set.Contains(element))
-        {
+    public bool Add(Vector3 element){
+        if (!set.Contains(element)){
             set.Add(element);
             return true;
         }
@@ -18,4 +16,6 @@ public class Set
             return false;
         }
     }
+
+
 }

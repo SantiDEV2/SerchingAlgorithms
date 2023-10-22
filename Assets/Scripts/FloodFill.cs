@@ -14,26 +14,20 @@ public class FloodFill : MonoBehaviour
 
     public Tilemap tilemap;
 
-    public TileBase tile1;
+    public TileBase flood;
 
-    public TileBase tile2;
+    public TileBase path;
 
     public float delay;
 
     public Dictionary<Vector3Int, Vector3Int> cameFrom = new();
 
-    public bool canRun = true;
+    public bool canstop;
 
-    public bool earlyExit;
+    public bool canRun = true;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canRun && !earlyExit)
-        {
-            FloodFillStartCoroutine();
-            canRun = false;
-        }
-
-        if (Input.GetKeyDown(KeyCode.E) && canRun && earlyExit)
+        if (Input.GetKeyDown(KeyCode.Space) && canRun)
         {
             FloodFillStartCoroutine();
             canRun = false;
@@ -57,12 +51,10 @@ public class FloodFill : MonoBehaviour
         {
             Vector3Int current = frontier.Dequeue();
 
-            Debug.Log(frontier.Count);
-
 
             List<Vector3Int> neighbours = GetNeighbours(current);
 
-            if (earlyExit && current == objective) break;
+            if (current == objective && canstop) break;
 
             foreach (Vector3Int next in neighbours)
             {
@@ -71,7 +63,7 @@ public class FloodFill : MonoBehaviour
                 {
 
 
-                    if (next != startingPoint && next != objective) { tilemap.SetTile(next, tile2); }
+                    if (next != startingPoint && next != objective) { tilemap.SetTile(next, flood); }
                     reached.Add(next);
                     frontier.Enqueue(next);
                     if (!cameFrom.ContainsKey(next))
@@ -106,7 +98,7 @@ public class FloodFill : MonoBehaviour
         Vector3Int tile = cameFrom[objective];
         while (tile != startingPoint)
         {
-            tilemap.SetTile(tile, tile1);
+            tilemap.SetTile(tile, path);
             tile = cameFrom[tile];
         }
 
