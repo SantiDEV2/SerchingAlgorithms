@@ -24,19 +24,16 @@ public class DetectCellLocation : MonoBehaviour
         {
             var actualTile = tilemap.GetTile(cellPosition);
             if (actualTile == null) { return; }
-            Debug.Log("Origen "+ cellPosition);
             startpoint.startingPoint = cellPosition;
             TileFlags flags = tilemap.GetTileFlags(cellPosition);
             tilemap.SetTile(cellPosition, origin);
             tilemap.SetTileFlags(cellPosition, flags);
-            
         }
 
         if (Input.GetMouseButtonDown(1))
         {
             var actualTile = tilemap.GetTile(cellPosition);
             if (actualTile == null) { return; }
-            Debug.Log("Destino " + cellPosition);
             endpoint.objective = cellPosition;
             TileFlags flags = tilemap.GetTileFlags(cellPosition);
             tilemap.SetTile(cellPosition, end);
