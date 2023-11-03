@@ -3216,11 +3216,9 @@ MonoBehaviour:
   startingPoint: {x: 0, y: 0, z: 0}
   objective: {x: 0, y: 0, z: 0}
   tilemap: {fileID: 42666324}
-  origen: {fileID: 11400000, guid: 413c9bd317291b246ac5a0ee90507d33, type: 2}
   pintador: {fileID: 11400000, guid: 30101bcd9c5a71f479876e6af132c505, type: 2}
   delay: 0
   canRun: 1
-  earlyExit: 0
   cost1: {fileID: 11400000, guid: 2a403da56d498934a979635d19445e95, type: 2}
   cost2: {fileID: 11400000, guid: f58defefb6c6a9c4fb0976d2cd5eadc5, type: 2}
   cost3: {fileID: 11400000, guid: e8fb8f0663fd8104cb8758b23868b854, type: 2}
@@ -3238,20 +3236,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridLayout: {fileID: 1900820715}
   tilemap: {fileID: 42666324}
-  origen: {fileID: 11400000, guid: 413c9bd317291b246ac5a0ee90507d33, type: 2}
-  destino: {fileID: 11400000, guid: 5056d71049d87be47b4ac74888d26b3f, type: 2}
-  encimado: {fileID: 11400000, guid: 8a2113d23153f3c40b748b9aa2e80c43, type: 2}
-  original: {fileID: 11400000, guid: 2a403da56d498934a979635d19445e95, type: 2}
+  Origen: {fileID: 11400000, guid: 413c9bd317291b246ac5a0ee90507d33, type: 2}
+  Destino: {fileID: 11400000, guid: 5056d71049d87be47b4ac74888d26b3f, type: 2}
+  Encimado: {fileID: 11400000, guid: 8a2113d23153f3c40b748b9aa2e80c43, type: 2}
+  Original: {fileID: 11400000, guid: 2a403da56d498934a979635d19445e95, type: 2}
   startpoint: {fileID: 145139446}
   endpoint: {fileID: 145139446}
-  Dikstrafloodfill: {fileID: 145139444}
-  Heuristicfloodfill: {fileID: 145139447}
-  AEstrellafloodfill: {fileID: 145139448}
-  FloodFillBool: 0
-  FloodFillEarlyExitBool: 0
-  DijkstrasBool: 0
-  HeuristicBool: 0
-  AEstrellaBool: 1
+  dikstrafloodfill: {fileID: 145139444}
+  heuristicfloodfill: {fileID: 145139447}
+  aEstrellafloodfill: {fileID: 145139448}
+  floodFillBool: 0
+  floodFillEarlyExitBool: 0
+  dijkstrasBool: 0
+  heuristicBool: 0
+  heuristicEarlyExitBool: 0
+  aEstrellaBool: 0
+  aEstrellaEarlyExitBool: 0
 --- !u!114 &145139446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3270,8 +3270,8 @@ MonoBehaviour:
   pintador: {fileID: 11400000, guid: 30101bcd9c5a71f479876e6af132c505, type: 2}
   camino: {fileID: 11400000, guid: 7fedca60e75179847a77dfcd74a3e1f8, type: 2}
   delay: 0
-  canstop: 0
   canRun: 1
+  earlyExit: 0
 --- !u!114 &145139447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3287,11 +3287,11 @@ MonoBehaviour:
   startingPoint: {x: 0, y: 0, z: 0}
   objective: {x: 0, y: 0, z: 0}
   tilemap: {fileID: 42666324}
-  origen: {fileID: 11400000, guid: 30101bcd9c5a71f479876e6af132c505, type: 2}
-  pintador: {fileID: 11400000, guid: 7fedca60e75179847a77dfcd74a3e1f8, type: 2}
+  pintador: {fileID: 11400000, guid: 30101bcd9c5a71f479876e6af132c505, type: 2}
+  camino: {fileID: 11400000, guid: 7fedca60e75179847a77dfcd74a3e1f8, type: 2}
   delay: 0
   canRun: 1
-  earlyExit: 1
+  earlyExit: 0
   cost1: {fileID: 11400000, guid: 2a403da56d498934a979635d19445e95, type: 2}
   cost2: {fileID: 11400000, guid: f58defefb6c6a9c4fb0976d2cd5eadc5, type: 2}
   cost3: {fileID: 11400000, guid: e8fb8f0663fd8104cb8758b23868b854, type: 2}
@@ -3310,14 +3310,14 @@ MonoBehaviour:
   startingPoint: {x: 0, y: 0, z: 0}
   objective: {x: 0, y: 0, z: 0}
   tilemap: {fileID: 42666324}
-  tilePurple: {fileID: 11400000, guid: 30101bcd9c5a71f479876e6af132c505, type: 2}
-  tileBlue: {fileID: 11400000, guid: 7fedca60e75179847a77dfcd74a3e1f8, type: 2}
+  pintador: {fileID: 11400000, guid: 30101bcd9c5a71f479876e6af132c505, type: 2}
+  camino: {fileID: 11400000, guid: 7fedca60e75179847a77dfcd74a3e1f8, type: 2}
   delay: 0
   canRun: 1
-  earlyExit: 1
-  cost0: {fileID: 11400000, guid: 2a403da56d498934a979635d19445e95, type: 2}
-  cost1: {fileID: 11400000, guid: f58defefb6c6a9c4fb0976d2cd5eadc5, type: 2}
-  cost2: {fileID: 11400000, guid: e8fb8f0663fd8104cb8758b23868b854, type: 2}
+  earlyExit: 0
+  cost1: {fileID: 11400000, guid: 2a403da56d498934a979635d19445e95, type: 2}
+  cost2: {fileID: 11400000, guid: f58defefb6c6a9c4fb0976d2cd5eadc5, type: 2}
+  cost3: {fileID: 11400000, guid: e8fb8f0663fd8104cb8758b23868b854, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
