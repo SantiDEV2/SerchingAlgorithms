@@ -1,48 +1,48 @@
-using ESarkis;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class FloodFill : MonoBehaviour
 {
-    public PriorityQueue<Vector3Int> frontier = new();
+    public Queue<Vector3Int> frontier = new();
+
     public Vector3Int startingPoint;
     public Vector3Int objective;
+
     public Set reached = new Set();
 
-    [Space]
     public Tilemap tilemap;
-    public TileBase flood;
-    public TileBase path;
 
-    [Space]
+    public TileBase pintador;
+
+    public TileBase camino;
+
     public float delay;
+
     public Dictionary<Vector3Int, Vector3Int> cameFrom = new();
+
     public bool canstop;
-    public bool canRun = true;
 
-    [Space]
-    public Dictionary<Vector3Int, int> cost_so_Far = new();
-
+    public bool canRun=true;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canRun)
+        if (Input.GetKeyDown(KeyCode.Space)&&canRun)
         {
             FloodFillStartCoroutine();
             canRun = false;
         }
-
-
     }
     public void FloodFillStartCoroutine()
     {
+        
+        frontier.Enqueue(startingPoint);
+        cameFrom.Add(startingPoint,Vector3Int.zero);
+        
 
-        frontier.Enqueue(startingPoint, 0);
-        cameFrom.Add(startingPoint, Vector3Int.zero);
-        cost_so_Far.Add(startingPoint, 0);
         StartCoroutine(FloodFillCoroutine());
+       
+
     }
 
     IEnumerator FloodFillCoroutine()
@@ -50,50 +50,59 @@ public class FloodFill : MonoBehaviour
         while (frontier.Count > 0)
         {
             Vector3Int current = frontier.Dequeue();
+
+            Debug.Log(frontier.Count);
+
+
             List<Vector3Int> neighbours = GetNeighbours(current);
+
             if (current == objective && canstop) break;
+
             foreach (Vector3Int next in neighbours)
             {
+
                 if (!reached.set.Contains(next) && tilemap.GetSprite(next) != null)
                 {
-                    if (next != startingPoint && next != objective) {
-                        tilemap.SetTile(next, flood);
-                    }
+                   
+                    
+                    if (next != startingPoint && next != objective) { tilemap.SetTile(next, pintador); }
                     reached.Add(next);
-                    /*  frontier.Enqueue(next); */
+                    frontier.Enqueue(next);
                     if (!cameFrom.ContainsKey(next))
                     {
-                        cameFrom.Add(next, current);
+                        cameFrom.Add(next,current);
+                        
                     }
+                    
+
                 }
+
             }
             yield return new WaitForSeconds(delay);
         }
         DrawPath();
+        
     }
 
     private List<Vector3Int> GetNeighbours(Vector3Int current)
     {
         List<Vector3Int> neighbours = new List<Vector3Int>();
-        neighbours.Add(current + new Vector3Int(0, 1, 0));
+        neighbours.Add(current + new Vector3Int(0 , 1,0));
         neighbours.Add(current + new Vector3Int(0, -1, 0));
         neighbours.Add(current + new Vector3Int(1, 0, 0));
         neighbours.Add(current + new Vector3Int(-1, 0, 0));
+
         return neighbours;
     }
 
     private void DrawPath()
     {
         Vector3Int tile = cameFrom[objective];
-        while (tile != startingPoint)
+        while (tile!= startingPoint)
         {
-            tilemap.SetTile(tile, path);
+            tilemap.SetTile(tile,camino);
             tile = cameFrom[tile];
         }
-    }
-
-    public void GetCost()
-    {
-        new List<TileBase>() actualtiles ;
+        
     }
 }
